@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
           description: '',
         ),
         "/wish": (context) => const WishList(),
-        "/create": (context) => const CoffeeCardCreateWidget(),
+        "/create": (context) => const CoffeeCardCreateWidget(), // CoffeeCardCreateWidget 페이지 설정
       },
     );
   }

@@ -28,21 +28,28 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       description: '',
     ),
     const WishList(),
-    const CoffeeCardCreateWidget(),
+    FormWidget( // FormWidget을 포함하여 수정
+      onSubmit: (imageUrl, name, description) {
+        // 데이터 제출 처리
+        print('Image URL: $imageUrl');
+        print('Name: $name');
+        print('Description: $description');
+      },
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Color appBarColor = theme.colorScheme.inversePrimary;
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appBarColor,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Coffee cards"),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.lightGreen, // BottomNavigationBar의 배경 색상 설정
+        selectedItemColor: Colors.white, // 선택된 아이템의 색상 설정
+        unselectedItemColor: Colors.black54, // 선택되지 않은 아이템의 색상 설정
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -63,9 +70,6 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         ],
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
-        backgroundColor: appBarColor, // 하단 메뉴 바 배경색
-        selectedItemColor: Colors.lightGreen, // 선택된 아이템의 색상
-        unselectedItemColor: Colors.grey[400], // 선택되지 않은 아이템의 색상
       ),
     );
   }
